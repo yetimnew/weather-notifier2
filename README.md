@@ -50,8 +50,8 @@ This project is built using **Laravel**, powered by **Laravel Sail** for Docker 
 
 1. **Clone the Repository**
    ```bash
-   git clone <repository-url>
-   cd weather-notifier
+   git clone https://github.com/yetimnew/weather-notifier2
+   cd weather-notifier2
    ```
 
 2. **Install Dependencies**
@@ -69,9 +69,9 @@ This project is built using **Laravel**, powered by **Laravel Sail** for Docker 
      DB_CONNECTION=mysql
      DB_HOST=mysql
      DB_PORT=3306
-     DB_DATABASE=weather_notifier
-     DB_USERNAME=sail
-     DB_PASSWORD=password
+     DB_DATABASE=weather_notifier2
+     DB_USERNAME=root
+     DB_PASSWORD=
 
      SESSION_DRIVER=database
      MAIL_MAILER=smtp
@@ -81,7 +81,8 @@ This project is built using **Laravel**, powered by **Laravel Sail** for Docker 
      MAIL_PASSWORD=null
      MAIL_ENCRYPTION=null
 
-     WEATHER_API_KEY=<your-weather-api-key>
+     WEATHER_API_KEY=352d96f2df464b8bb6f122344242312
+     WEATHER_API_URL=http://api.weatherapi.com/v1
      ```
 
 4. **Set Up Laravel Sail**
@@ -105,7 +106,7 @@ This project is built using **Laravel**, powered by **Laravel Sail** for Docker 
      ```bash
      ./vendor/bin/sail artisan serve
      ```
-   - Access the application at: [http://localhost:8000](http://localhost:8000)
+   - Access the application at: [http://localhost](http://localhost)
 
 ---
 
@@ -138,28 +139,12 @@ This project is built using **Laravel**, powered by **Laravel Sail** for Docker 
 
 ---
 
-## Future Enhancements
-- Add more notification channels (e.g., SMS, Push Notifications).
-- Support for additional weather anomalies.
-- UI improvements for a more cohesive user experience.
-- Advanced features like pausing notifications for a specified duration.
-
----
-
-## Troubleshooting
 
 ### Common Issues
 1. **Port Conflicts**
    - Ensure ports required by Sail services are not in use. Modify the `docker-compose.yml` file if needed.
 
-2. **Missing `sessions` Table**
-   - Run the following command to create the table:
-     ```bash
-     ./vendor/bin/sail artisan session:table
-     ./vendor/bin/sail artisan migrate
-     ```
-
-3. **Weather API Errors**
+2. **Weather API Errors**
    - Ensure your API key is valid and set in the `.env` file.
 
 4. **Docker Permission Errors**
@@ -168,9 +153,7 @@ This project is built using **Laravel**, powered by **Laravel Sail** for Docker 
 ---
 
 ## Contributors
-- **Your Name**
-- **Additional Contributors**
-
+- **Yetimeshet Tadesse**
 ---
 
 ## License
