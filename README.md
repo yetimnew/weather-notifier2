@@ -73,13 +73,13 @@ This project is built using **Laravel**, powered by **Laravel Sail** for Docker 
      DB_USERNAME=root
      DB_PASSWORD=
 
-     SESSION_DRIVER=database
-     MAIL_MAILER=smtp
-     MAIL_HOST=mailpit
-     MAIL_PORT=1025
-     MAIL_USERNAME=null
-     MAIL_PASSWORD=null
-     MAIL_ENCRYPTION=null
+   MAIL_MAILER=smtp
+  MAIL_HOST=sandbox.smtp.mailtrap.io
+  MAIL_PORT=2525
+  MAIL_USERNAME=8a4a70983e2b09
+  MAIL_PASSWORD=2c1c6e88501a74
+  MAIL_FROM_ADDRESS="yetimnew@gmail.com"
+  MAIL_FROM_NAME="${APP_NAME}"
 
      WEATHER_API_KEY=352d96f2df464b8bb6f122344242312
      WEATHER_API_URL=http://api.weatherapi.com/v1
