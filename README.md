@@ -1,66 +1,177 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Weather Notifier Application
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Project Overview
+The Weather Notifier application alerts users about specific weather conditions, focusing on:
+- **High Precipitation Levels**
+- **Harmful UV Index Levels**
 
-## About Laravel
+The application allows users to:
+- Receive notifications via **email**.
+- Set **custom thresholds** for weather alerts.
+- Configure alerts for **multiple cities**.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+This project is built using **Laravel**, powered by **Laravel Sail** for Docker support, and adheres to modern web development practices.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+---
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Requirements Fulfilled
 
-## Learning Laravel
+### **Core Features**
+1. **User Authentication**
+   - Implemented using **Laravel Jetstream**.
+   - Provides user registration, login, and profile management.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+2. **Weather Alerts**
+   - Integrated with a weather API (e.g., OpenWeather, WeatherAPI).
+   - Sends notifications via **Laravel Notifications** when thresholds are exceeded.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+3. **Custom Thresholds**
+   - Users can set personalized thresholds for precipitation and UV index.
+   - Alerts configured for multiple cities.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+4. **Database Configuration**
+   - Configured MySQL for managing users, cities, thresholds, and session data.
+   - Successfully migrated all required tables, including the `sessions` table for database-based sessions.
 
-## Laravel Sponsors
+5. **One-Button Docker Setup**
+   - Leveraged **Laravel Sail** for a seamless Dockerized environment.
+   - `sail up` command starts all required services (e.g., MySQL, Redis).
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+---
 
-### Premium Partners
+## Installation Instructions
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+### **Prerequisites**
+- **Docker** installed on your machine.
+- **Composer** installed for PHP dependencies.
+- Weather API key (e.g., from OpenWeather).
 
-## Contributing
+### **Steps**
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+1. **Clone the Repository**
+   ```bash
+   git clone <repository-url>
+   cd weather-notifier
+   ```
 
-## Code of Conduct
+2. **Install Dependencies**
+   ```bash
+   composer install
+   ```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+3. **Configure Environment Variables**
+   - Copy the example `.env` file:
+     ```bash
+     cp .env.example .env
+     ```
+   - Set the following variables in `.env`:
+     ```env
+     DB_CONNECTION=mysql
+     DB_HOST=mysql
+     DB_PORT=3306
+     DB_DATABASE=weather_notifier
+     DB_USERNAME=sail
+     DB_PASSWORD=password
 
-## Security Vulnerabilities
+     SESSION_DRIVER=database
+     MAIL_MAILER=smtp
+     MAIL_HOST=mailpit
+     MAIL_PORT=1025
+     MAIL_USERNAME=null
+     MAIL_PASSWORD=null
+     MAIL_ENCRYPTION=null
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+     WEATHER_API_KEY=<your-weather-api-key>
+     ```
+
+4. **Set Up Laravel Sail**
+   - Install Sail:
+     ```bash
+     php artisan sail:install
+     ```
+   - Start Docker containers:
+     ```bash
+     ./vendor/bin/sail up -d
+     ```
+
+5. **Run Migrations**
+   - Create the database schema:
+     ```bash
+     ./vendor/bin/sail artisan migrate
+     ```
+
+6. **Serve the Application**
+   - Run the development server:
+     ```bash
+     ./vendor/bin/sail artisan serve
+     ```
+   - Access the application at: [http://localhost:8000](http://localhost:8000)
+
+---
+
+## Features Implemented
+
+### **User Authentication**
+- Powered by **Laravel Jetstream**.
+- Includes registration, login, and profile management.
+
+### **Weather Data Fetching**
+- Integrated with a weather API to fetch:
+  - Precipitation data.
+  - UV index data.
+
+### **Notifications**
+- Sends email alerts using Laravel Notifications when thresholds are exceeded.
+
+### **Custom User Settings**
+- Users can:
+  - Set personalized thresholds.
+  - Add multiple cities for alerts.
+
+### **Database Management**
+- Configured MySQL with proper migrations:
+  - `users`, `sessions`, `cities`, and `thresholds` tables.
+
+### **Dockerized Setup**
+- One-command Docker setup using Laravel Sail.
+- Includes MySQL, Redis, and Mailpit.
+
+---
+
+## Future Enhancements
+- Add more notification channels (e.g., SMS, Push Notifications).
+- Support for additional weather anomalies.
+- UI improvements for a more cohesive user experience.
+- Advanced features like pausing notifications for a specified duration.
+
+---
+
+## Troubleshooting
+
+### Common Issues
+1. **Port Conflicts**
+   - Ensure ports required by Sail services are not in use. Modify the `docker-compose.yml` file if needed.
+
+2. **Missing `sessions` Table**
+   - Run the following command to create the table:
+     ```bash
+     ./vendor/bin/sail artisan session:table
+     ./vendor/bin/sail artisan migrate
+     ```
+
+3. **Weather API Errors**
+   - Ensure your API key is valid and set in the `.env` file.
+
+4. **Docker Permission Errors**
+   - Ensure your user has permission to run Docker commands or use `sudo`.
+
+---
+
+## Contributors
+- **Your Name**
+- **Additional Contributors**
+
+---
 
 ## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+This project is licensed under the [MIT License](LICENSE).
