@@ -1,0 +1,9 @@
+sail artisan config:clear
+sail artisan cache:clear
+sail artisan route:clear
+sail artisan view:clear
+sail artisan config:cache
+
+sail artisan cache:clear
+sail artisan config:cache
+sail artisan queue:restart

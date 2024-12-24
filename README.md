@@ -107,7 +107,7 @@ This project is built using **Laravel**, powered by **Laravel Sail** for Docker 
      ./vendor/bin/sail artisan serve
      ```
    - Access the application at: [http://localhost](http://localhost)
-     - You can follow the Telescope route at: [http://localhost/telescope/](http://localhost/telescope/)
+  - You can follow the Telescope route at: [http://localhost/telescope/](http://localhost/telescope/)
 
 ---
 
