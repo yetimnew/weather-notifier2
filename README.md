@@ -1,3 +1,4 @@
+
 # Weather Notifier Application
 
 ## Project Overview
@@ -111,6 +112,13 @@ This project is built using **Laravel**, powered by **Laravel Sail** for Docker 
      ```
    - Access the application at: [http://localhost](http://localhost)
    - You can also follow the Telescope route at: [http://localhost/telescope/](http://localhost/telescope/)
+
+7. **Dispatching Events**
+   - Before dispatching the event, make sure to run the following command:
+     ```bash
+     ./vendor/bin/sail artisan queue:work
+     ```
+   - For production, we will use **Supervisor** or **Cron Job** to manage the queue workers.
 
 ---
 
