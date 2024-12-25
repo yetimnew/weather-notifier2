@@ -22,7 +22,7 @@ This project is built using **Laravel**, powered by **Laravel Sail** for Docker 
    - Provides user registration, login, and profile management.
 
 2. **Weather Alerts**
-   - Integrated with a weather API (e.g., OpenWeather, WeatherAPI).
+   - Integrated with a weather API (WeatherAPI).
    - Sends notifications via **Laravel Notifications** when thresholds are exceeded.
 
 3. **Custom Thresholds**
@@ -31,6 +31,9 @@ This project is built using **Laravel**, powered by **Laravel Sail** for Docker 
 
 4. **Database Configuration**
    - Configured MySQL for managing users, cities, thresholds, and session data.
+   - Database tables:
+     - **`cities`**: Stores city details such as `id`, `name`, `latitude`, `longitude`, and other metadata.
+     - **`city_user`**: A pivot table to manage the many-to-many relationship between users and cities, including columns like `uv_threshold`, `precipitation_threshold`, and timestamps.
    - Successfully migrated all required tables, including the `sessions` table for database-based sessions.
 
 5. **One-Button Docker Setup**
@@ -44,7 +47,7 @@ This project is built using **Laravel**, powered by **Laravel Sail** for Docker 
 ### **Prerequisites**
 - **Docker** installed on your machine.
 - **Composer** installed for PHP dependencies.
-- Weather API key (e.g., from OpenWeather).
+- Weather API key from WeatherAPI.
 
 ### **Steps**
 
@@ -73,13 +76,13 @@ This project is built using **Laravel**, powered by **Laravel Sail** for Docker 
      DB_USERNAME=root
      DB_PASSWORD=
 
-   MAIL_MAILER=smtp
-  MAIL_HOST=sandbox.smtp.mailtrap.io
-  MAIL_PORT=2525
-  MAIL_USERNAME=8a4a70983e2b09
-  MAIL_PASSWORD=2c1c6e88501a74
-  MAIL_FROM_ADDRESS="yetimnew@gmail.com"
-  MAIL_FROM_NAME="${APP_NAME}"
+     MAIL_MAILER=smtp
+     MAIL_HOST=sandbox.smtp.mailtrap.io
+     MAIL_PORT=2525
+     MAIL_USERNAME=8a4a70983e2b09
+     MAIL_PASSWORD=2c1c6e88501a74
+     MAIL_FROM_ADDRESS="yetimnew@gmail.com"
+     MAIL_FROM_NAME="${APP_NAME}"
 
      WEATHER_API_KEY=352d96f2df464b8bb6f122344242312
      WEATHER_API_URL=http://api.weatherapi.com/v1
@@ -107,7 +110,7 @@ This project is built using **Laravel**, powered by **Laravel Sail** for Docker 
      ./vendor/bin/sail artisan serve
      ```
    - Access the application at: [http://localhost](http://localhost)
-  - You can follow the Telescope route at: [http://localhost/telescope/](http://localhost/telescope/)
+   - You can also follow the Telescope route at: [http://localhost/telescope/](http://localhost/telescope/)
 
 ---
 
@@ -118,7 +121,7 @@ This project is built using **Laravel**, powered by **Laravel Sail** for Docker 
 - Includes registration, login, and profile management.
 
 ### **Weather Data Fetching**
-- Integrated with a weather API to fetch:
+- Integrated with WeatherAPI to fetch:
   - Precipitation data.
   - UV index data.
 
@@ -132,7 +135,7 @@ This project is built using **Laravel**, powered by **Laravel Sail** for Docker 
 
 ### **Database Management**
 - Configured MySQL with proper migrations:
-  - `users`, `sessions`, `cities`, and `thresholds` tables.
+  - `users`, `sessions`, `cities`, and `city_user` tables.
 
 ### **Dockerized Setup**
 - One-command Docker setup using Laravel Sail.
@@ -140,21 +143,21 @@ This project is built using **Laravel**, powered by **Laravel Sail** for Docker 
 
 ---
 
-
-### Common Issues
+## Common Issues
 1. **Port Conflicts**
    - Ensure ports required by Sail services are not in use. Modify the `docker-compose.yml` file if needed.
 
 2. **Weather API Errors**
    - Ensure your API key is valid and set in the `.env` file.
 
-4. **Docker Permission Errors**
+3. **Docker Permission Errors**
    - Ensure your user has permission to run Docker commands or use `sudo`.
 
 ---
 
 ## Contributors
 - **Yetimeshet Tadesse**
+
 ---
 
 ## License
